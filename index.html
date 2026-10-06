@@ -1,19 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Today's Mission</title>
-    <style>
-        body { font-family: Arial; text-align: center; padding: 50px; background: #0d1117; color: white; }
-        h1 { color: #58a6ff; font-size: 50px; }
-        .box { background: #161b22; padding: 30px; border-radius: 15px; margin: 30px auto; max-width: 600px; border: 1px solid #30363d; }
-    </style>
+<title>kariukin991-byte // root access</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+  body { background: #000; color: #00ff41; font-family: 'JetBrains Mono', monospace; margin: 0; padding: 20px; overflow: hidden; }
+  .scanline { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18,16,0) 50%, rgba(0,0,0,0.25) 50%); background-size: 100% 4px; pointer-events: none; z-index: 10; }
+  .terminal { max-width: 900px; margin: auto; border: 1px solid #00ff41; padding: 20px; box-shadow: 0 0 20px #00ff41; min-height: 90vh; }
+  .header { border-bottom: 1px dashed #00ff41; padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; }
+  .green { color: #00ff41; } .dim { opacity: 0.6; } .red { color: #ff0040; }
+  #typing::after { content: '█'; animation: blink 1s infinite; }
+  @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { border: 1px solid #00ff41; padding: 15px; background: rgba(0,255,65,0.05); }
+  a { color: #00ff41; }
+</style>
 </head>
 <body>
-    <h1>👋 Hello World!</h1>
-    <div class="box">
-        <h2>I'm kariukin991</h2>
-        <p>Welcome to my first website.</p>
-        <p>Built with ❤️ from Kikuyu, Kenya</p>
+<div class="scanline"></div>
+<div class="terminal">
+  <div class="header">
+    <span>root@kikuyu:~$ kariukin991-byte Dashboard [SECURE]</span>
+    <span id="clock" class="dim"></span>
+  </div>
+
+  <div id="typing"></div>
+
+  <div class="grid" style="margin-top:20px">
+    <div class="card">
+      <div>> GITHUB_INTEL</div><br>
+      <div id="git">Fetching from github.com/kariukin991-byte...</div>
     </div>
+    <div class="card">
+      <div>> SYSTEM_STATUS</div><br>
+      Location: Kikuyu, KE [CENTRAL]<br>
+      Uptime: <span id="uptime"></span><br>
+      Mission: <span class="red">Today-s-Mission ACTIVE</span><br>
+      Access Level: ROOT
+    </div>
+    <div class="card">
+      <div>> ACTIVE_PROCESSES</div><br>
+      <div class="dim">[OK] coding.exe</div>
+      <div class="dim">[OK] learning.js</div>
+      <div>[RUN] hack_the_planet.py</div>
+      <div class="dim">[IDLE] sleep</div>
+    </div>
+    <div class="card">
+      <div>> CONTACT</div><br>
+      github: kariukin991-byte<br>
+      status: Building in public<br>
+      <br>
+      <button onclick="hack()" style="background:#00ff41;color:#000;border:none;padding:8px 15px;font-family:inherit;cursor:pointer;font-weight:bold">INITIATE HACK</button>
+    </div>
+  </div>
+
+  <div style="margin-top:30px" class="dim">> Type help for commands... [but you already know]</div>
+</div>
+
+<script>
+  const text = "Establishing connection... Access granted. Welcome back, kariukin991. Loading Today-s-Mission protocols...";
+  let i=0;
+  function typeWriter(){
+    if(i<text.length){ document.getElementById('typing').innerHTML+=text.charAt(i); i++; setTimeout(typeWriter, 30); }
+  }
+  typeWriter();
+  
+  setInterval(()=>{ document.getElementById('clock').innerText=new Date().toLocaleTimeString(); },1000);
+  let sec=0; setInterval(()=>{ sec++; document.getElementById('uptime').innerText=`${Math.floor(sec/60)}m ${sec%60}s`; },1000);
+
+  fetch('https://api.github.com/users/kariukin991-byte')
+    .then(r=>r.json())
+    .then(d=>{
+      document.getElementById('git').innerHTML = `User: ${d.login}<br>Repos: ${d.public_repos}<br>Created: ${new Date(d.created_at).getFullYear()}<br>Bio: ${d.bio||'Building first project'}`;
+    });
+
+  function hack(){
+    alert('ACCESS DENIED... just kidding. You are already root 😎');
+    document.body.style.background='#00ff41'; document.body.style.color='#000';
+    setTimeout(()=>{ document.body.style.background='#000'; document.body.style.color='#00ff41'; },200);
+  }
+</script>
 </body>
 </html>
