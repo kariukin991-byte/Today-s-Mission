@@ -42,17 +42,8 @@ setInterval(draw,50);
 // Clock + Uptime
 setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString()},1000);
 let sec=0;setInterval(()=>{sec++;document.getElementById('uptime').textContent=Math.floor(sec/60)+'m '+sec%60+'s'},1000);
-// GitHub API with fallback
-async function loadGit(){
- try{
-  const r=await fetch('https://api.github.com/users/kariukin991-byte');
-  const d=await r.json();
-  document.getElementById('git').innerHTML=`User: ${d.login}<br>Repos: ${d.public_repos}<br>Created: ${new Date(d.created_at).getFullYear()}<br>Bio: ${d.bio||'Building first project'}`;
- }catch(e){
-  document.getElementById('git').innerHTML=`User: kariukin991-byte<br>Repos: 1<br>Created: 2026<br>Bio: Building first project [OFFLINE MODE]`;
- }
-}
-loadGit();
+// Fixed - No API, instant load
+document.getElementById('git').innerHTML=`User: kariukin991-byte<br>Repos: 1<br>Followers: Growing 📈<br>Created: 2026<br>Bio: Building first project from Kikuyu, KE<br>Status: <span style="color:#00ff41">ONLINE</span>`;
 // Terminal commands
 const input=document.getElementById('termInput'), out=document.getElementById('output');
 const cmds={
