@@ -60,7 +60,16 @@ input.addEventListener('keydown',e=>{
   const div=document.createElement('div');div.className='line';div.innerHTML=`<span class="prompt">kariukin991@kikuyu:~$ </span>${cmd}`;out.appendChild(div);
   const res=document.createElement('div');res.className='line';
   if(cmd==='clear'){out.innerHTML='';}
-  else if(cmd==='github'){res.textContent=cmds.github;window.open('https://github.com/kariukin991-byte','_blank');out.appendChild(res);}
+  else if(cmd==='github'){res.textContent=cmds.github;window.open('https://github.com/kariukin991-byte','_blank');out.appendChild(res);
+   } else if(cmd==='github'){
+    window.open('https://github.com/kariukin991-byte','_blank');
+    out='Opening github.com/kariukin991-byte...';
+  } else if(cmd==='insta' || cmd==='instagram'){
+    window.open('https://instagram.com/qharheez','_blank');
+    out='Opening @qharheez... 📸';
+  } else if(cmd==='kikuyu'){
+    out='📍 KIKUYU PROTOCOL ACTIVATED...';
+  }
   else{res.textContent=cmds[cmd]||`Command not found: ${cmd}. Type 'help'`;out.appendChild(res);}
   input.value='';document.getElementById('terminal').scrollTop=99999;
  }
